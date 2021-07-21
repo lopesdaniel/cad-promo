@@ -19,11 +19,9 @@ public class SpringAjaxApplication implements CommandLineRunner{
 	SocialMetaTagService service;
 
 	public void run(String... args) throws Exception {
-		// SocialMetaTag og = service.getOpenGraphByURl("https://www.udemy.com/course/cucumber-java/");
-		// System.out.println(og.toString());
 		
-		SocialMetaTag twitter = service.getTwitterCardByURl("https://www.udemy.com/course/cucumber-java/");
-		System.out.println(twitter.toString());
+		SocialMetaTag tag = service.getSocialMetaTagByUrl("https://www.udemy.com/course/cucumber-java/");
+		System.out.println(tag.toString());
 	}
 
 }
