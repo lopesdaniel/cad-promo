@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.NumberFormat;
@@ -47,6 +49,10 @@ public class Promocao implements Serializable {
 
     @Column(name = "data_cadastro", nullable = false)
     private LocalDateTime dtCadastro;
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_fk")
+    private Categoria categoria;
 
     public Long getId() {
         return id;
@@ -118,6 +124,14 @@ public class Promocao implements Serializable {
 
     public void setDtCadastro(LocalDateTime dtCadastro) {
         this.dtCadastro = dtCadastro;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     
