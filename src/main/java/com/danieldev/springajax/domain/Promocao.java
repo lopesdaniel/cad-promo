@@ -134,6 +134,13 @@ public class Promocao implements Serializable {
         this.categoria = categoria;
     }
 
+    @Override
+    public String toString() {
+        return "Promocao [categoria=" + categoria + ", descricao=" + descricao + ", dtCadastro=" + dtCadastro + ", id="
+                + id + ", likes=" + likes + ", linkImagem=" + linkImagem + ", linkPromocao=" + linkPromocao + ", preco="
+                + preco + ", site=" + site + ", titulo=" + titulo + "]";
+    }
+
     
 
 }
