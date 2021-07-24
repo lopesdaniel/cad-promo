@@ -1,6 +1,5 @@
 package com.danieldev.springajax;
 
-import com.danieldev.springajax.domain.SocialMetaTag;
 import com.danieldev.springajax.service.SocialMetaTagService;
 
 import org.springframework.beans.factory.annotation.Autowired;
