@@ -17,9 +17,15 @@ $("#form-add-promo").submit(function(event){
         url: "/promocao/save",
         data: promo,
         beforeSend: function(){
+            $("span").closest(".error-span").remove();
+            $("#categoria").removeClass("is-invalid");
+            $("#preco").removeClass("is-invalid");
+            $("#linkPromocao").removeClass("is-invalid");
+            $("#titulo").removeClass("is-invalid");
+
+
             $("#form-add-promo").hide();
             $("#loader-form").addClass("loader").show();
-
         },
         success: function(){
             $("#form-add-promo").each(function(){
@@ -27,7 +33,19 @@ $("#form-add-promo").submit(function(event){
             });
             $("#linkImagem").attr("src", "/images/promo-dark.png");
             $("#site").text("");
-            $("#alert").addClass("alert alert-success").text("Promoção salva com sucesso !");
+            $("#alert").removeClass("alert alert-danger").addClass("alert alert-success").text("Promoção salva com sucesso !");
+        },
+        statusCode: {
+            422: function(xhr){
+                console.log("status erro >",xhr.status);
+                var errors = $.parseJSON(xhr.responseText);
+                $.each(errors, function(key, val){
+                    $('#' + key).addClass("is-invalid");
+                    $("#error-"+key).addClass("invalid-feedback")
+                        .append("<span class='error-span'>"+val+"</span>");
+
+                });
+            }
         },
         error: function(xhr){
             console.log("> error: ", xhr.responseText);
