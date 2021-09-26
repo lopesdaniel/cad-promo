@@ -13,6 +13,7 @@ import com.danieldev.springajax.repository.CategoriaRepository;
 import com.danieldev.springajax.repository.PromocaoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +38,8 @@ public class PromocaoController {
 
     @GetMapping("/list")
     public String listarOfertas(ModelMap model){
-        model.addAttribute("promocoes", promocaoRepository.findAll(Sort.by(Direction.DESC, "dtCadastro")));
+        PageRequest pageRequest = PageRequest.of(0, 1, Sort.by(Direction.DESC, "dtCadastro"));
+        model.addAttribute("promocoes", promocaoRepository.findAll(pageRequest));
 
         return "promo-list";
     }
