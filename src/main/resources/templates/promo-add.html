@@ -71,6 +71,6 @@
 
 </div>
 
-<script th:src="@{/js/promo-add.js}" th:fragment="js"></script>
+<script th:src="@{/js/promo-add.js?v={version} (version=${#strings.randomAlphanumeric(9)}) }" th:fragment="js"></script>
 </body>
 </html>
